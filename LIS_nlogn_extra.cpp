@@ -9,7 +9,7 @@ typedef long long ll;
 vector<int> give_me_LIS(vector<int> &X)
 {
     int N = X.size();
-    vector<int> P(N,-69),M(N+1,-69);
+    vector<int> P(N, -69), M(N + 1, -69);
     int L = 0;
     for (int i = 0; i < N; i++)
     {
@@ -17,21 +17,24 @@ vector<int> give_me_LIS(vector<int> &X)
         while (lo <= hi)
         {
             int mid = lo + (hi - lo) / 2;
-            if (X[M[mid]] < X[i]) lo=mid+1;
-            else hi=mid-1;
+            if (X[M[mid]] < X[i])
+                lo = mid + 1;
+            else
+                hi = mid - 1;
         }
-        int newL=lo;
+        int newL = lo;
         //cout<<newL<<endl;
-        P[i]=M[newL-1];
-        M[newL]=i;
-        if(newL>L) L=newL;
+        P[i] = M[newL - 1];
+        M[newL] = i;
+        if (newL > L)
+            L = newL;
     }
     vector<int> subseq(L);
-    int k=M[L];
-    for(int i=L-1;i>=0;i--)
+    int k = M[L];
+    for (int i = L - 1; i >= 0; i--)
     {
-        subseq[i]=X[k];
-        k=P[k];
+        subseq[i] = X[k];
+        k = P[k];
     }
     //for(int i=0;i<N;i++) cout<<P[i]<<" ";
     //cout<<endl;
@@ -48,8 +51,9 @@ int main()
     vector<int> seq(N);
     for (int i = 0; i < N; i++)
         cin >> seq[i];
-    vector<int> s=give_me_LIS(seq);
-    for(int i=0;i<(int)s.size();i++) cout<<s[i]<<" ";
-    cout<<endl;
+    vector<int> s = give_me_LIS(seq);
+    for (int i = 0; i < (int)s.size(); i++)
+        cout << s[i] << " ";
+    cout << endl;
     return 0;
 }
