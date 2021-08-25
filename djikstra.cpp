@@ -64,7 +64,7 @@ int totalPaths(int n, vector<vector<int>> &edges, int src, int des) //maybe less
             }
         }
     }
-    return paths[n - 1];
+    return paths[des];
 }
 
 int totalPaths_myway(int n, vector<vector<int>> &edges, int src, int des) //my way a bit slow maybe due to loop in while
