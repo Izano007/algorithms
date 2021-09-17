@@ -26,9 +26,9 @@ int root(int x)
 
 void union1(int x, int y)
 {
-    int p = root(x);
-    int q = root(y);
-    id[p] = id[q];
+    int pp = root(x);
+    int qq = root(y);
+    id[pp] = id[qq];
 }
 
 int kruskal()
