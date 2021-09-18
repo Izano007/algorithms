@@ -31,7 +31,6 @@ ll nCr(ll n, ll r)
 
 void solve()
 {
-    init();
     int n, r;
     cin >> n >> r;
     cout << nCr(n, r) << endl;
@@ -39,6 +38,7 @@ void solve()
 int main()
 {
     fastio;
+    init();
     int t;
     cin >> t;
     while (t--)
