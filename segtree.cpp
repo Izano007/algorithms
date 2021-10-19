@@ -42,6 +42,22 @@ void update(int node, int start, int end, int idx, int val)
 	tree[node] = tree[2 * node] + tree[2 * node + 1];
 }
 
+void updateRange(int node, int start, int end, int l, int r, int val)
+{
+	if (end < l || start > r)
+		return;
+	if (start == end)
+	{
+		tree[node] = val;
+		A[start] = val;
+		return;
+	}
+	int mid = start + (end - start) / 2;
+	updateRange(2 * node, start, mid, l, r, val);
+	updateRange(2 * node + 1, mid + 1, end, l, r, val);
+	tree[node] = tree[2 * node] + tree[2 * node + 1];
+}
+
 ll query(int node, int start, int end, int l, int r)
 {
 	if (end < l || start > r)
