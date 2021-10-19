@@ -5,44 +5,53 @@ typedef long long ll;
 	ios_base::sync_with_stdio(false); \
 	cin.tie(NULL);                    \
 	cout.tie(NULL)
-	
-const int MOD=1e9+7;
-	
-struct binary_indexed_tree{
+
+const int MOD = 1e9 + 7;
+
+struct binary_indexed_tree
+{
 	int N;
 	vector<ll> bit;
-	binary_indexed_tree(int n):N(n){
-		bit.resize(N+1,0);
+	binary_indexed_tree(int n) : N(n)
+	{
+		bit.resize(N + 1, 0);
 	}
-	
-	ll addition(ll x,ll y){
-		return (x+y)%MOD;
+
+	ll addition(ll x, ll y)
+	{
+		return (x + y) % MOD;
 	}
-	
-	void update(int x,ll a){
+
+	void update(int x, ll a)
+	{
 		x++;
-		for(x;x<=N;x+=(x&-x)) bit[x]=addition(bit[x],a);
+		for (x; x <= N; x += (x & -x))
+			bit[x] = addition(bit[x], a);
 	}
-	
-	ll query(int x){
-		ll res=0;
+
+	ll query(int x)
+	{
+		ll res = 0;
 		x++;
-		for(x;x>0;x-=(x&-x)) res=addition(res,bit[x]);
+		for (x; x > 0; x -= (x & -x))
+			res = addition(res, bit[x]);
 		return res;
 	}
 };
 
-void solve(){
+void solve()
+{
 	int n;
-	cin>>n;
+	cin >> n;
 	binary_indexed_tree bit(n);
 }
 
 int main()
 {
 	fastio;
-	int t=1;
+	int t = 1;
 	//cin>>t;
-	while(t--) solve();
+	while (t--)
+		solve();
 	return 0;
 }
