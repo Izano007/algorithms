@@ -19,6 +19,8 @@ ll power(ll a, ll b) //Avoid overflows by %M some given in problem statement
     return result;
 }
 
+// Any number(n) of 2 can be checked using n&(n-1)==0 in O(1) time.
+
 int main()
 {
     ll a, b;
