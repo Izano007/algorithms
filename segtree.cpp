@@ -46,7 +46,7 @@ void updateRange(int node, int start, int end, int l, int r, int val)
 {
 	if (end < l || start > r)
 		return;
-	if (start == end)
+	if (start >= l && r >= end)
 	{
 		tree[node] = val;
 		A[start] = val;
