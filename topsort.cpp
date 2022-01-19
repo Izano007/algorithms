@@ -104,7 +104,7 @@ int main()
 {
 	fastio;
 	init();
-	solve_iterative();
-	// solve_dfs();
+	//solve_iterative();
+	solve_dfs();
 	return 0;
 }
