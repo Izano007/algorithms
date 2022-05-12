@@ -17,15 +17,16 @@ void init()
     inv[1] = 1;
     for (int i = 2; i < MAX; i++)
     {
-        fact[i] = (fact[i - 1] * i) % MOD;
-        inv[i] = (inv[MOD % i] * (MOD - MOD / i)) % MOD;
-        invfact[i] = (invfact[i - 1] * inv[i]) % MOD;
+        fact[i] = fact[i - 1] * i % MOD;
+        inv[i] = inv[MOD % i] * (MOD - MOD / i) % MOD;
+        invfact[i] = invfact[i - 1] * inv[i] % MOD;
     }
 }
 
 ll nCr(ll n, ll r)
 {
-    ll ans = ((fact[n] * invfact[r]) % MOD * invfact[n - r]) % MOD;
+    if(n < 0 || r < 0 || n - r < 0) return 0;
+    ll ans = fact[n] * invfact[r] % MOD * invfact[n - r] % MOD;
     return ans;
 }
 
