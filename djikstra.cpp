@@ -48,7 +48,7 @@ int totalPaths(int n, vector<vector<int>> &edges, int src, int des) //maybe less
     {
         auto x = pq.top();
         pq.pop();
-        if (dist[x[1]] < x[0]) //has to be less than otherwise if (<=) then paths is not updated correctly
+        if (dist[x[1]] < x[0])
             continue;
         for (auto y : adj[x[1]])
         {
