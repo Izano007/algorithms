@@ -70,6 +70,57 @@ ll query(int node, int start, int end, int l, int r)
 	return x1 + x2;
 }
 
+struct seg_tree
+{
+    int N;
+    vector<ll> tree;
+    seg_tree(int n) : N(n)
+    {
+        while (__builtin_popcount(N) != 1)
+            N++;
+        tree.resize(2 * N);
+    }
+
+    void updateQuery(int node, int start, int end, int l, int r, ll val)
+    {
+        if (end < l || start > r)
+            return;
+        if (start >= l && r >= end)
+        {
+            tree[node] += val;
+            return;
+        }
+        int mid = start + (end - start) / 2;
+        updateQuery(2 * node, start, mid, l, r, val);
+        updateQuery(2 * node + 1, mid + 1, end, l, r, val);
+        // tree[node] = tree[2 * node] + tree[2 * node + 1];
+    }
+
+    ll sumQuery(int node, int start, int end, int l, int r)
+    {
+        if (end < l || start > r)
+            return 0;
+        if (start >= l && r >= end)
+            return tree[node];
+        int mid = start + (end - start) / 2;
+        ll x1 = sumQuery(2 * node, start, mid, l, r);
+        ll x2 = sumQuery(2 * node + 1, mid + 1, end, l, r);
+        return x1 + x2 + tree[node];
+        // return x1+x2;
+    }
+
+    void update(int l, int r, ll val)
+    {
+        updateQuery(1, 0, N - 1, l, r, val);
+    }
+
+    ll query(int l, int r)
+    {
+        return sumQuery(1, 0, N - 1, l, r);
+    }
+};
+
+
 void solve()
 {
 	int n, q;
