@@ -1817,5 +1817,46 @@
       "using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;"
     ],
     "description": "pbds"
-  }
+  },
+  "matrixexpo": {
+  "prefix": "matrixexpo",
+  "body": [
+    "// import mint in order to use",
+    "struct Matrix",
+    "{",
+    "    int n;",
+    "    vector<vector<mint>> val;",
+    "    Matrix(int N) : n(N)",
+    "    {",
+    "        val.resize(n, vector<mint>(n));",
+    "    }",
+    "    Matrix() : n(2)",
+    "    {",
+    "        val.resize(2, vector<mint>(2));",
+    "    }",
+    "    Matrix operator*(const Matrix o)",
+    "    {",
+    "        Matrix prod(n);",
+    "        rep(i, 0, n) rep(j, 0, n) rep(k, 0, n)",
+    "            prod.val[i][k] += val[i][j] * o.val[j][k];",
+    "        return prod;",
+    "    }",
+    "};",
+    "",
+    "Matrix modpow(Matrix p, ll n)",
+    "{",
+    "    Matrix res(p.n);",
+    "    rep(i, 0, p.n) res.val[i][i] = 1;",
+    "    while (n)",
+    "    {",
+    "        if (n % 2)",
+    "            res = res * p;",
+    "        p = p * p;",
+    "        n >>= 1LL;",
+    "    }",
+    "    return res;",
+    "}"
+  ],
+  "description": "matrixexpo"
+}
 }
