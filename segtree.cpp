@@ -70,7 +70,7 @@ ll query(int node, int start, int end, int l, int r)
 	return x1 + x2;
 }
 
-struct seg_tree
+struct seg_tree   // Segtree for range update and single point query
 {
     int N;
     vector<ll> tree;
@@ -93,7 +93,7 @@ struct seg_tree
         int mid = start + (end - start) / 2;
         updateQuery(2 * node, start, mid, l, r, val);
         updateQuery(2 * node + 1, mid + 1, end, l, r, val);
-        // tree[node] = tree[2 * node] + tree[2 * node + 1];
+        // tree[node] = tree[2 * node] + tree[2 * node + 1];   // Uncomment for range sum query single point update
     }
 
     ll sumQuery(int node, int start, int end, int l, int r)
@@ -105,8 +105,8 @@ struct seg_tree
         int mid = start + (end - start) / 2;
         ll x1 = sumQuery(2 * node, start, mid, l, r);
         ll x2 = sumQuery(2 * node + 1, mid + 1, end, l, r);
-        return x1 + x2 + tree[node];
-        // return x1+x2;
+        return x1 + x2 + tree[node];   // Comment for range sum query single point update
+        // return x1+x2;    // Uncomment for range sum query single point update
     }
 
     void update(int l, int r, ll val)
